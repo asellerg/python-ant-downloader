@@ -342,7 +342,7 @@ SendAcknowledgedData = message(DIR_OUT, "SEND_ACKNOWLEDGED_DATA", 0x4f, "B8s", [
 SendBurstTransferPacket = message(DIR_OUT, "SEND_BURST_TRANSFER_PACKET", 0x50, "B8s", ["channel_number", "data"], retry_policy=wait_and_retry_policy, matcher=send_data_matcher, validator=send_data_validator)
 StartupMessage = message(DIR_IN, "STARTUP_MESSAGE", 0x6f, "B", ["startup_message"])
 SerialError = message(DIR_IN, "SERIAL_ERROR", 0xae, None, ["error_number", "msg_contents"])
-RecvBroadcastData = message(DIR_IN, "RECV_BROADCAST_DATA", 0x4e, "B8s", ["channel_number", "data"])
+RecvBroadcastData = message(DIR_IN, "RECV_BROADCAST_DATA", 0x4e, "B8sxHBB", ["channel_number", "data", "device_number", "device_type", "trans_type"])
 RecvAcknowledgedData = message(DIR_IN, "RECV_ACKNOWLEDGED_DATA", 0x4f, "B8s", ["channel_number", "data"])
 RecvBurstTransferPacket = message(DIR_IN, "RECV_BURST_TRANSFER_PACKET", 0x50, "B8s", ["channel_number", "data"])
 ChannelEvent = message(DIR_IN, "CHANNEL_EVENT", 0x40, "BBB", ["channel_number", "msg_id", "msg_code"])
